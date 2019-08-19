@@ -1,0 +1,89 @@
+
+/*
+Configure Table, App and div elements look and feel and position
+*/
+
+.App {
+  text-align: center;
+}
+table, td, th{
+  border: thin solid #61dafb;
+    cursor: pointer;
+
+
+}
+.sport_event{
+    border: thin;
+    width: 100%;
+    margin-top: 42px;
+
+}
+
+#what_ami{
+    font-weight: bold;
+    float: left;
+}
+#ok,#cancel{
+    float: right;
+    cursor: pointer;
+    height: 24px;
+    margin: 5px 2px 0 0;
+    border: thin solid;
+
+    border-radius: 2px;
+}
+#ok{
+
+}
+#name{
+    text-indent: 2px;
+    height: 25px;
+    float: right;
+    width: 100%;
+    border-radius: 2px;
+    border: none;
+}
+table{
+    width: 100%;
+}
+.team:hover{
+    border: thin solid;
+    color: black;
+    background: gold;
+}
+
+.vote{
+    float: right;
+    border: thin solid;
+    border-radius: 2px;
+
+    margin: 4px 12px 0 0;
+}
+
+#vote{
+    border: thin solid;
+    width: 40px;
+    cursor: pointer;
+    height: 26px;
+}
+.title{
+    float: left;
+}
+.bar{
+   width: 100%;
+   position: fixed;
+    margin: 0 ;
+    padding: 0 0 10px 0;
+
+     color: white;
+     background: #282c34;
+    top: 0;
+    left: 0;
+    right: 0;
+  text-align: center;
+  font-weight: bold;
+}
+
+
+
+
