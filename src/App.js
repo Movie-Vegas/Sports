@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css'
-import SportPoll from './SportPoll'
+import SportsPoll from './SportsPoll'
 
 
 /**
@@ -16,7 +16,7 @@ function App() {
 
     <div className="App">
 
-    <SportPoll/>
+    <SportsPoll/>
 
     </div>
 
@@ -25,7 +25,6 @@ function App() {
 
   );
 }
-
 
 
 

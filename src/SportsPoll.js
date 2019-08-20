@@ -1,7 +1,18 @@
 import test from "./test-assignment";
 import React from 'react'
 
-class SportPoll extends React.Component{
+
+
+class SportsPoll extends React.Component{
+
+    constructor(){
+
+        super();
+        this.state={
+            away:"",
+            home:"",
+        }
+    }
 
     /**
      *
@@ -66,6 +77,29 @@ class SportPoll extends React.Component{
         </div>);
     }
 
+
+    //Store data in local storage
+    localSDB(value,teamIndex){
+
+        if (typeof(Storage) !== "undefined") {
+            // Store
+            localStorage.setItem(""+teamIndex, value);
+            // Retrieve
+
+            if(teamIndex===0){
+
+                this.setState({away:localStorage.getItem(""+0)})
+
+            }
+            if(teamIndex===1){
+
+                this.setState({home:localStorage.getItem(""+1)})
+            }
+        } else {
+            alert( "Sorry, your browser does not support Web Storage...");
+        }
+    }
+
     // The Event table data function query for Event data.
     eventTableData(val){
         let eventItems=document.querySelector("#event_items");
@@ -110,7 +144,16 @@ class SportPoll extends React.Component{
     //The execute database engine function query and prepare statement for the eventTableData function;
 
     executeDBEngine(){
-        let eventList=JSON.parse(JSON.stringify(test));
+        let eventList="";
+
+        if (typeof(Storage) !== "undefined") {
+            // Store
+            localStorage.setItem("polls",JSON.stringify(test));
+
+            //get storage
+            eventList=JSON.parse(localStorage.getItem("polls"));
+        }
+
 
         let shuffle=Math.floor(Math.random() * Math.floor(5));
         var state=[];
@@ -169,6 +212,7 @@ class SportPoll extends React.Component{
         var awayEngine;
         var homeEngine;
         let count=0;
+        let callThis=this;
 
 
         team.forEach(function (el,key) {
@@ -189,11 +233,14 @@ class SportPoll extends React.Component{
                     el.style.cssText="background-color:white color:black";
                     alert("The poll has already finished, choose another team" )
                 } else if(key===0){
+
+                    callThis.localSDB(ev.target.textContent,0);
                     count+=1;
                     return false;
 
                 }else {
 
+                    callThis.localSDB(ev.target.textContent,1);
                     count+=1;
                     return false;
                 }
@@ -210,11 +257,11 @@ class SportPoll extends React.Component{
                 return false;
             }else {
                 if(awayEngine>homeEngine){
-                    winner.textContent="Away Team";
+                    winner.textContent="Away: "+callThis.state.away;
                     score.textContent="Wins";
                     count=0;
                 }else  if(homeEngine>awayEngine) {
-                    winner.textContent="Home Team";
+                    winner.textContent="Home: "+callThis.state.home;
                     score.textContent="Wins";
                     count=0;
 
@@ -247,4 +294,4 @@ class SportPoll extends React.Component{
 
 
 }
-export default SportPoll
+export default SportsPoll
